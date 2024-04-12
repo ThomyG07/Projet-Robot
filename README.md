@@ -6,4 +6,6 @@ Dans un premier, l'installation des librairies est impérative :
 * [PyQt6](https://www.pythonguis.com/installation/)   
 * [OpenCV-Python](https://docs.opencv.org/4.9.0/d5/de5/tutorial_py_setup_in_windows.html)
 * [QReader](https://pypi.org/project/qreader/)
+
+  
 L'ensemble de ces librairies est disponible sur le requirements.txt 
