@@ -1,0 +1,4 @@
+martypy
+PyQt6
+opencv-python
+qreader
