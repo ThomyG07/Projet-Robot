@@ -8,4 +8,4 @@ Dans un premier, l'installation des librairies est impérative :
 * [QReader](https://pypi.org/project/qreader/)
 
   
-L'ensemble de ces librairies est disponible sur le requirements.txt 
+L'ensemble de ces librairies sont disponibles sur le requirements.txt 
