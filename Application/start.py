@@ -1,9 +1,18 @@
-import martypy as marty
+import sys
 from PyQt6.QtCore import PYQT_VERSION_STR
+from PyQt6.QtWidgets import QApplication
 import cv2
 import qreader
+from Interface.MainWindow import MainWindow
+from Martycontroller.MartyController import MartyController
 
-print("Hello, Marty!")
-print("martypy version:", marty.__version__)
-print("PyQt version:", PYQT_VERSION_STR)
-print("Opencv-python",cv2.__version__)
+
+
+marty = MartyController("192.168.0.5")
+
+app = QApplication(sys.argv)
+
+window = MainWindow()
+window.show()
+
+app.exec()
