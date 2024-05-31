@@ -8,11 +8,9 @@ from Martycontroller.MartyController import MartyController
 
 
 
-marty = MartyController("192.168.0.5")
 
 app = QApplication(sys.argv)
 
 window = MainWindow()
 window.show()
-
 app.exec()
