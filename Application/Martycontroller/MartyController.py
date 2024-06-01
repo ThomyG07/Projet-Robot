@@ -3,28 +3,44 @@ class MartyController():
     def __init__(self, ip ):
         self.ip = ip
         self.marty = None
-        #self.marty = self.connect_to_marty(ip)
 
     def connect_to_marty(self):
         try:
             print(f"connection")
+            print(self.ip)
             marty = martypy.Marty("wifi", self.ip)
+            self.marty = marty
             return marty
         except Exception as e:
             print(f"Failed to connect to Marty: {e}")
+            self.marty = None
             return None
 
-    def move_forward(self,steps=1):
+    def move_forward(self,steps = 2):
         if self.marty:
             self.marty.walk(steps, step_length=25)
-            self.marty.stand_straight()
-    def move_backward(self,steps=1):
+
+    def move_backward(self,steps = 2):
         if self.marty:
-            self.marty.walk(steps,"auto", 0,-25)
-    def move_side(self,side, steps = 1 ):
+            self.marty.walk(steps,step_length=-25)
+
+    def move_side(self,side, steps = 2 ):
         if self.marty:
             self.marty.sidestep(side,steps)
-            
+
+    def batttery(self):
+        if self.marty:
+            return self.marty.get_battery_remaining()
+        return None
+    
+    def color(self):
+        
+        if self.marty:
+            try:
+                return self.marty.get_color_sensor_hex("left")
+            except Exception as e:
+                print(f"Probleme avec le capteur de couleur {e}")
+        return None
 
     def turn_left(self,degrees):
         if self.marty:
@@ -41,9 +57,6 @@ class MartyController():
     
     def getMarty(self):
         return self.marty
-            
-    def marty_function(self):
-        print("hemm")
 
     def close(self):
         self.marty.close()

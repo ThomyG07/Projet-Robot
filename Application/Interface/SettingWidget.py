@@ -4,16 +4,16 @@ from PyQt6.QtCore import QSize
 from PyQt6.QtCore import Qt 
 import re
 from Martycontroller.MartyController import MartyController
-from qasync import asyncSlot
 import threading
 
 
 
 
 class SettingWidget(QWidget):
-    def __init__(self,TouchesDirectionnelles):
+    def __init__(self,TouchesDirectionnelles, ActionPanel):
         super(SettingWidget, self).__init__()
         self.TouchesDire = TouchesDirectionnelles
+        self.ActionPanel = ActionPanel
         self.AddElement()
         self.InitGrid()
         self.marty = None
@@ -30,6 +30,11 @@ class SettingWidget(QWidget):
         self.label = QLabel("")
         self.label.setPixmap(QPixmap("Application/img/icons8-emoji-cercle-rouge-48.png"))
         self.label.setGeometry(25,25,25,25)
+        self.battery = QLabel("Niveau de batterie :")
+        self.battery_value = QLabel("--%")
+        self.btnColorsensor = QPushButton("Couleur")
+        self.btnColorsensor.clicked.connect(self.getColor)
+
 
 
     def InitGrid(self):
@@ -38,6 +43,9 @@ class SettingWidget(QWidget):
         layout.addWidget(self.text_ip, 0, 0)
         layout.addWidget(self.btnC, 0, 1)
         layout.addWidget(self.label, 0, 2)
+        layout.addWidget(self.battery, 1,0)
+        layout.addWidget(self.battery_value, 1,1)
+        layout.addWidget(self.btnColorsensor, 2, 0)
         layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.setLayout(layout)
 
@@ -47,11 +55,11 @@ class SettingWidget(QWidget):
         if resultat:
             
             self.marty = MartyController(self.text_ip.text())
-            #mon_thread = threading.Thread(target=self.test)
-            #mon_thread.start()
             self.marty.connect_to_marty()
             if self.marty.getMarty() is not None:   
                 self.TouchesDire.SetMartyC(self.marty)
+                self.ActionPanel.SetMartyC(self.marty)
+                self.Change_value(self.marty.batttery())
                 self.updateLabel()
             else:
                 message_erreurco = QMessageBox.critical(
@@ -65,13 +73,24 @@ class SettingWidget(QWidget):
             self,
             "Erreur",
             "Champ saisit n'est pas une addresse ip",
-            
         )
     
     def getMartyController(self):
         return self.marty
     def setMartyController(self, MartyC):
         self.marty = MartyC
+
+    def Change_value(self, newText):
+        self.battery_value.setText(str(newText)+" %")
+
+    def getColor(self):
+        hex_color = self.marty.color()
+        r = int(hex_color[0:2],16)
+        g = int(hex_color[2:4],16) 
+        b = int(hex_color[4:6],16)
+
+        print(r, g, b)
+
        
     def updateLabel(self):
         if self.marty.etat_connection():

@@ -2,6 +2,7 @@ from PyQt6.QtCore import QSize
 from PyQt6.QtWidgets import  QMainWindow, QHBoxLayout, QWidget
 from Interface.TouchesDirectionnelles import TouchesDirectionnelles
 from Interface.SettingWidget import SettingWidget
+from Interface.ActionPanel import ActionPanel
 
 
 
@@ -13,13 +14,16 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("My App")
         
         touchesdirectionnelles = TouchesDirectionnelles()
-        settingwidget = SettingWidget(touchesdirectionnelles)
+        actionpanel = ActionPanel()
+        settingwidget = SettingWidget(touchesdirectionnelles, actionpanel)
 
         layout = QHBoxLayout()
 
         layout.addWidget(touchesdirectionnelles)
         layout.addWidget(settingwidget)
+        layout.addWidget(actionpanel)
 
         widget = QWidget()
+    
         widget.setLayout(layout)
         self.setCentralWidget(widget)
