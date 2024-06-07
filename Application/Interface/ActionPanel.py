@@ -89,32 +89,32 @@ class ActionPanel(QWidget):
 
     def celebrate(self):
         if self.CheckMartyC():
-            mon_thread = threading.Thread(target=self.marty.celebrate)
+            mon_thread = threading.Thread(target=self.marty.show_off)
             mon_thread.start()
 
     def waveLeft(self):
         if self.CheckMartyC():
-            mon_thread = threading.Thread(target=self.marty.wave, args=("left",))
+            mon_thread = threading.Thread(target=self.marty.wave_left)
             mon_thread.start()
 
     def waveRight(self):
         if self.CheckMartyC():
-            mon_thread = threading.Thread(target=self.marty.wave, args=("right",))
+            mon_thread = threading.Thread(target=self.marty.wave_right)
             mon_thread.start()
 
     def wiggleEyes(self):
         if self.CheckMartyC():
-            mon_thread = threading.Thread(target=self.marty.wiggle)
+            mon_thread = threading.Thread(target=self.marty.wiggle_eyes)
             mon_thread.start()
 
     def kickLeft(self):
         if self.CheckMartyC():
-            mon_thread = threading.Thread(target=self.marty.kick, args=("left",))
+            mon_thread = threading.Thread(target=self.marty.kick_left)
             mon_thread.start()
     
     def kickRight(self):
         if self.CheckMartyC():
-            mon_thread = threading.Thread(target=self.marty.kick, args=("right",))
+            mon_thread = threading.Thread(target=self.marty.kick_right)
             mon_thread.start()
 
     def CheckMartyC(self):
