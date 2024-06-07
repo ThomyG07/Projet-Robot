@@ -63,12 +63,12 @@ class MartyController():
 
     def wave_left(self):
         if self.marty:
-            self.marty.arms( left_angle = 30, right_angle = 0)
+            self.marty.arms( left_angle = 30, right_angle = 0, move_time= 1000)
         
 
     def wave_right(self):
         if self.marty:
-            self.marty.arms(left_angle = 0, right_angle = 30)
+            self.marty.arms(left_angle = 0, right_angle = 30, move_time = 1000)
 
 
     def wiggle_eyes(self):
