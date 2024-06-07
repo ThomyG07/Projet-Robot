@@ -34,3 +34,4 @@ class MartyEtalonnageCouleur():
     def SaveDict(self):
         Database = open("databaseHexaColor.txt","w")
         Database.write(self.Colors)
+        Database.close()
