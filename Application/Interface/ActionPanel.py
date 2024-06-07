@@ -2,7 +2,6 @@ from PyQt6.QtWidgets import  QWidget, QLineEdit, QPushButton, QGridLayout, QMess
 from PyQt6.QtGui import QIcon , QPixmap
 from PyQt6.QtCore import QSize
 from PyQt6.QtCore import Qt 
-import re
 from Martycontroller.MartyController import MartyController
 import threading
 class ActionPanel(QWidget):

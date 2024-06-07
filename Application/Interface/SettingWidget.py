@@ -6,14 +6,12 @@ import re
 from Martycontroller.MartyController import MartyController
 import threading
 
-
-
-
 class SettingWidget(QWidget):
     def __init__(self,TouchesDirectionnelles, ActionPanel):
         super(SettingWidget, self).__init__()
         self.TouchesDire = TouchesDirectionnelles
         self.ActionPanel = ActionPanel
+        self.Colors = {}
         self.AddElement()
         self.InitGrid()
         self.marty = None
@@ -33,7 +31,7 @@ class SettingWidget(QWidget):
         self.battery = QLabel("Niveau de batterie :")
         self.battery_value = QLabel("--%")
         self.btnColorsensor = QPushButton("Couleur")
-        self.btnColorsensor.clicked.connect(self.getColor)
+        self.btnColorsensor.clicked.connect(self.DefColor)
 
 
 
@@ -83,13 +81,16 @@ class SettingWidget(QWidget):
     def Change_value(self, newText):
         self.battery_value.setText(str(newText)+" %")
 
-    def getColor(self):
+    def DefColor(self, color):
         hex_color = self.marty.color()
+
         r = int(hex_color[0:2],16)
         g = int(hex_color[2:4],16) 
         b = int(hex_color[4:6],16)
 
-        print(r, g, b)
+        colorRGB = [r,g,b]
+        self.Colors[color] =  colorRGB
+
 
        
     def updateLabel(self):
