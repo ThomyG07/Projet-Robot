@@ -63,25 +63,25 @@ class MartyController():
 
     def wave_left(self):
         if self.marty:
-            self.marty.arms(self, left_angle = 30, right_angle = 0)
+            self.marty.arms( left_angle = 30, right_angle = 0)
         
 
     def wave_right(self):
         if self.marty:
-            self.marty.arms(self, left_angle = 0, right_angle = 30)
+            self.marty.arms(left_angle = 0, right_angle = 30)
 
 
     def wiggle_eyes(self):
         if self.marty:
-            self.marty.eyes(self, pose_or_angle= 'wiggle')
+            self.marty.eyes(pose_or_angle= 'wiggle')
 
     def kick_left(self) :
         if self.marty:
-            self.marty.kick(self, side='right')
+            self.marty.kick(side='left')
 
     def kick_right(self):
         if self.marty:
-            self.marty.kick(self, side='left')
+            self.marty.kick(side='right')
             
     def etat_connection(self):
         print(self.marty)
