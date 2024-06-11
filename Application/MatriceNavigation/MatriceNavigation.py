@@ -30,6 +30,7 @@ class MatriceNavigation():
             start_row = 0
             end_row = self.grid_size - 1
             step = 1
+        
         else :
             start_row = self.grid_size - 1
             end_row = 0
