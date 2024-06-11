@@ -2,8 +2,8 @@ import martypy
 
 
 class MatriceNavigation():
-    def __init__(self,  marty_controller):
-        self.marty = marty_controller
+    def __init__(self, ip):
+        self.ip = ip
         self.grid_size = 3
         self.color_grid = {}
 
@@ -40,7 +40,7 @@ class MatriceNavigation():
             #enregistrement de couleur
             self.record_color(col,row)
             
-            #prochain mvt
+            #prochain mvt 
             if row != end_row:
                 if direction == "up":
                   self.marty.move_forward(3)
