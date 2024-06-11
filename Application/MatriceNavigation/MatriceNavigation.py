@@ -50,8 +50,8 @@ class MatriceNavigation():
 
         
     def record_color(self, col, row):
-        color = self.marty.get_color_sensor_hex()
-        print(f"Color at position ({col}, {row}): {color}")
+        color = self.marty.get_color_sensor_hex()  
+        print(f"Couleur à la  position ({col}, {row}): {color}")
 
 
     
