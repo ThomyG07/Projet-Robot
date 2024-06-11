@@ -4,6 +4,7 @@ from PyQt6.QtCore import QSize
 from PyQt6.QtCore import Qt 
 import re
 from Martycontroller.MartyController import MartyController
+from Interface.ColorWindow import ColorWindow
 import threading
 
 class SettingWidget(QWidget):
@@ -31,7 +32,7 @@ class SettingWidget(QWidget):
         self.battery = QLabel("Niveau de batterie :")
         self.battery_value = QLabel("--%")
         self.btnColorsensor = QPushButton("Couleur")
-        self.btnColorsensor.clicked.connect(self.DefColor)
+        self.btnColorsensor.clicked.connect(lambda: self.DefColor("rouge"))
 
 
 
@@ -82,16 +83,19 @@ class SettingWidget(QWidget):
         self.battery_value.setText(str(newText)+" %")
 
     def DefColor(self, color):
-        hex_color = self.marty.color()
+        if self.CheckMartyC():
+            colorW = ColorWindow(self.marty)
+            colorW.show()
 
-        r = int(hex_color[0:2],16)
-        g = int(hex_color[2:4],16) 
-        b = int(hex_color[4:6],16)
-
-        colorRGB = [r,g,b]
-        self.Colors[color] =  colorRGB
-
-
+    def CheckMartyC(self):
+        if self.marty is not None:
+           return True
+        else:
+            message_erreurco = QMessageBox.critical(
+            self,
+            "Erreur",
+            "Pas de Morty connecté",)
+            return False
        
     def updateLabel(self):
         if self.marty.etat_connection():

@@ -9,8 +9,10 @@ class ColorWindow(QWidget):
     def __init__(self, Marty):
         super(ColorWindow, self).__init__()
         self.marty = Marty
-        self.InitGrid()
+        self.martycol = MartyEtalonnageCouleur(Marty)
         self.ActionsCouleurs()
+        self.InitGrid()
+        
 
     def ActionsCouleurs(self):
         self.btnRouge = QPushButton("")
@@ -48,6 +50,9 @@ class ColorWindow(QWidget):
         self.btnSauvegarde.setIconSize(QSize(50, 50))
         self.btnSauvegarde.clicked.connect(self.sauvegardeDict)
 
+        self.btnTest = QPushButton("test")
+        self.btnTest.clicked.connect(self.test)
+
     def InitGrid(self):
         layout = QGridLayout() 
 
@@ -56,12 +61,17 @@ class ColorWindow(QWidget):
         layout.addWidget(self.btnVert, 0, 2)
         layout.addWidget(self.btnBleu, 0, 3)
         layout.addWidget(self.btnViolet, 0, 4)
+        layout.addWidget(self.btnNoir,0,5)
         layout.addWidget(self.btnSauvegarde, 1, 2)
+        layout.addWidget(self.btnTest, 1, 3)
 
         self.setLayout(layout)
 
     def pushColor(self, key):
-        self.marty.AddColorDict(key)
+        self.martycol.AddColorDict(key)
 
     def sauvegardeDict(self):
-        self.marty.SaveDict
+        self.martycol.SaveDict()
+    
+    def test(self):
+        self.martycol.test()
