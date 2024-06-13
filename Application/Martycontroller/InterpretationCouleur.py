@@ -24,25 +24,23 @@ class InterpretationCouleur() :
     def interpret_and_act(self):
         # Scanner couleur
         hex_color = self.marty.get_color_sensor_hex()
-
         # Convertir en RGB
         rgb_color = self.Hexa2RGB(hex_color)
-        
         # Trouver l'action correspondante
         action_name = self.find_action(rgb_color)
-
         # Executer l'action
         if action_name :
             self.execute_action(action_name)
 
 
-
+    #Recherche action correspondante à la couleur dans le dict
     def find_action(self, color_rgb):
         
         for color_name , color_data in self.color_actions.items():
             if self.is_color_match(color_rgb, color_data['rgb']):
                 return color_data['action']
         return None
+    
     
     def execute_action(self, action_name):
         action_method = getattr(self, action_name)
