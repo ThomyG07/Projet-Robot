@@ -55,16 +55,11 @@ class MatriceNavigation():
                     sleep(1)
         
     def record_color(self, col, row):
-<<<<<<< Updated upstream
-        color = self.marty.get_color_sensor_hex()  
-        print(f"Couleur à la  position ({col}, {row}): {color}")
-=======
+
         color = self.marty.color();
         print(f"Color at position ({col}, {row}): {"hej"}")
         sleep(1)
         print("test")
-
->>>>>>> Stashed changes
 
 
     
