@@ -16,11 +16,12 @@ class MainWindow(QMainWindow):
         touchesdirectionnelles = TouchesDirectionnelles()
         actionpanel = ActionPanel()
         settingwidget = SettingWidget(touchesdirectionnelles, actionpanel)
-
+        settingwidget1 = SettingWidget(touchesdirectionnelles, actionpanel)
         layout = QHBoxLayout()
 
         layout.addWidget(touchesdirectionnelles)
         layout.addWidget(settingwidget)
+        layout.addWidget(settingwidget1)
         layout.addWidget(actionpanel)
 
         widget = QWidget()

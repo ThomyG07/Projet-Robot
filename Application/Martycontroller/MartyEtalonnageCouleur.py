@@ -5,7 +5,14 @@ from time import sleep
 class MartyEtalonnageCouleur():
     def __init__(self, Marty):
         self.marty = Marty
-        self.Colors = {"Rouge": None, "Jaune": None, "Vert": None, "Bleu Ciel": None,"Bleu Marine": None, "Rose": None, "Noir":None}
+        self.Colors = {"Rouge": {"rgb": None ,"action": "stop_and_dance"}, 
+                       "Jaune": {"rgb": None ,"action": "move_backward"}, 
+                       "Vert": { "rgb" :None, "action" : "move_forward" } , 
+                       "Bleu Ciel": { "rgb" :None, "action" : "move_forward" },
+                       "Bleu Marine":{ "rgb" :None, "action" : "side_right" }, 
+                       "Rose": { "rgb" :None, "action" : "side_left" }, 
+                       "Noir":{ "rgb" :None, "action" : "no_action" }
+                       }
 
     def getDict(self):
         return self.Colors
@@ -18,7 +25,6 @@ class MartyEtalonnageCouleur():
         for i in range(n):
             value = self.marty.color()
             sleep(0.2)
-            print(value)
             R[i],G[i],B[i] = value[0:2], value[2:4], value[4:6]
             sR += int(R[i], 16)
             sG += int(G[i], 16)
@@ -28,15 +34,17 @@ class MartyEtalonnageCouleur():
         sG = int(sG/n)
         sB = int(sB/n)
         
-        self.Colors[key] = [sR, sG, sB]
+        self.Colors[key]["rgb"] = [sR, sG, sB]
 
     def SaveDict(self):
         # Enregistrement du dictionnaire dans un fichier JSON
-        with open("databaseHexaColor.json", "w") as test:
+        file = "databaseHexaColor"+self.marty.getIp()+".json"
+        with open(file, "w") as test:
             json.dump(self.Colors, test)
     
     def LoadDataBase(self):
-        with open("databaseHexaColor.json","r") as test:
+        file = "databaseHexaColor"+self.marty.getIp()+".json"
+        with open(file,"r") as test:
             self.Colors = json.load(test)
 
     def test(self):
@@ -44,10 +52,9 @@ class MartyEtalonnageCouleur():
         codeRGB = self.Hexa2RGB(valueHexa)
         for cle,hexvalue in self.Colors.items():
             ecart =0
-            if(hexvalue!= None):
-                for i in range(len(hexvalue)):
-                    ecart+=abs(codeRGB[i]-hexvalue[i])
-                    print(cle + str(i) + " : " + str(ecart))
+            if(hexvalue["rgb"]!= None):
+                for i in range(len(hexvalue["rgb"])):
+                    ecart+=abs(codeRGB[i]-hexvalue["rgb"][i])
                 if(ecart/3 <10): print(cle)
 
     def Hexa2RGB(self, hexa):

@@ -47,7 +47,7 @@ class SettingWidget(QWidget):
         layout.addWidget(self.battery, 1,0)
         layout.addWidget(self.battery_value, 1,1)
         layout.addWidget(self.btnColorsensor, 2, 0)
-        layout.addWidget(self.btnNavigation,2,1)
+        layout.addWidget(self.btnNavigation,3,0)
         layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.setLayout(layout)
 
