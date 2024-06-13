@@ -44,15 +44,11 @@ class MatriceNavigation():
             #prochain mvt 
             if row != end_row:
                 if direction == "up":
-                  self.marty.move_forward(6)
-                  sleep(1)
+                  self.marty.move_forward_Blocking(6)
                   self.marty.get_ready()
-                  sleep(1)
                 else :
-                    self.marty.move_backward(6)
-                    sleep(1)
+                    self.marty.move_backward_Blocking(6)
                     self.marty.get_ready()
-                    sleep(1)
         
     def record_color(self, col, row):
 

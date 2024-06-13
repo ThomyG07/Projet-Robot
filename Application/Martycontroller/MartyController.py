@@ -20,13 +20,26 @@ class MartyController():
         if self.marty:
             self.marty.walk(steps, step_length=25)
 
+    def move_forward_Blocking(self,steps = 2):
+        if self.marty:
+            self.marty.walk(steps, step_length=25, blocking=True)
+
     def move_backward(self,steps = 2):
         if self.marty:
             self.marty.walk(steps,step_length=-25)
 
+    def move_backward_Blocking(self,steps = 2):
+        if self.marty:
+            self.marty.walk(steps,step_length=-25, blocking=True)
+
     def move_side(self,side, steps = 2 ):
         if self.marty:
             self.marty.sidestep(side,steps)
+
+    def move_side_Blocking(self,side, steps = 2):
+        if self.marty:
+            self.marty.sidestep(side,steps, blocking=True)
+
 
     def batttery(self):
         if self.marty:
