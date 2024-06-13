@@ -37,8 +37,7 @@ class MartyEtalonnageCouleur():
 
     def test(self):
         valueHexa = self.marty.color()
-        self.Hexa2RGB(valueHexa)
-        codeRGB = [sR, sG, sB]
+        codeRGB = self.Hexa2RGB(valueHexa)
         for cle,hexvalue in self.Colors.items():
             ecart =0
             if(hexvalue!= None):
