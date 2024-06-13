@@ -1,0 +1,1 @@
+{'Rouge': '8d191a', 'Jaune': 'e36c35', 'Vert': '452f1c', 'Bleu': '4b4050', 'Violet': 'a32430', 'Noir': '1cc9'}

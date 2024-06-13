@@ -1,5 +1,5 @@
 import martypy
-
+from time import sleep
 
 class MatriceNavigation():
     def __init__(self, ip):
@@ -14,14 +14,14 @@ class MatriceNavigation():
         for col in range(self.grid_size):     # commencer du bas de la grille
             if col % 2 == 0 :  #colone 0 et 2
                 self.scan_column(col, "up")
-                self.marty.get_ready()
+                
 
             else :    #colonne 1
                 self.scan_column(col, "down")
-                self.marty.get_ready()
             
             if col < self.grid_size - 1:
-                self.marty.move_side('right', 3)
+                self.marty.move_side('right', 5)
+                sleep(1)
            
 
     def scan_column(self,col,direction):
@@ -44,15 +44,27 @@ class MatriceNavigation():
             #prochain mvt 
             if row != end_row:
                 if direction == "up":
-                  self.marty.move_forward(3)
+                  self.marty.move_forward(6)
+                  sleep(1)
+                  self.marty.get_ready()
+                  sleep(1)
                 else :
-                    self.marty.move_backward(3)
-
-
+                    self.marty.move_backward(6)
+                    sleep(1)
+                    self.marty.get_ready()
+                    sleep(1)
         
     def record_color(self, col, row):
+<<<<<<< Updated upstream
         color = self.marty.get_color_sensor_hex()  
         print(f"Couleur à la  position ({col}, {row}): {color}")
+=======
+        color = self.marty.color();
+        print(f"Color at position ({col}, {row}): {"hej"}")
+        sleep(1)
+        print("test")
+
+>>>>>>> Stashed changes
 
 
     
