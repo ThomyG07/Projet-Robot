@@ -5,6 +5,7 @@ from PyQt6.QtCore import Qt
 import re
 from Martycontroller.MartyController import MartyController
 from Interface.ColorWindow import ColorWindow
+from MatriceNavigation.MatriceNavigation import MatriceNavigation
 import threading
 
 class SettingWidget(QWidget):
@@ -32,8 +33,9 @@ class SettingWidget(QWidget):
         self.battery = QLabel("Niveau de batterie :")
         self.battery_value = QLabel("--%")
         self.btnColorsensor = QPushButton("Couleur")
-        self.btnColorsensor.clicked.connect(lambda: self.DefColor("rouge"))
-
+        self.btnColorsensor.clicked.connect(self.DefColor)
+        self.btnNavigation = QPushButton("Navigation")
+        self.btnNavigation.clicked.connect(self.record)
 
 
     def InitGrid(self):
@@ -45,6 +47,7 @@ class SettingWidget(QWidget):
         layout.addWidget(self.battery, 1,0)
         layout.addWidget(self.battery_value, 1,1)
         layout.addWidget(self.btnColorsensor, 2, 0)
+        layout.addWidget(self.btnNavigation,2,1)
         layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.setLayout(layout)
 
@@ -82,7 +85,7 @@ class SettingWidget(QWidget):
     def Change_value(self, newText):
         self.battery_value.setText(str(newText)+" %")
 
-    def DefColor(self, color):
+    def DefColor(self):
         if self.CheckMartyC():
             colorW = ColorWindow(self.marty)
             colorW.show()
@@ -102,3 +105,6 @@ class SettingWidget(QWidget):
             self.label.setPixmap(QPixmap("Application/img/icons8-emoji-cercle-vert-48.png"))
         else:
             self.label.setPixmap(QPixmap("Application/img/icons8-emoji-cercle-rouge-48.png"))
+    def record(self):
+         self.matriceNav = MatriceNavigation(self.marty)
+         self.matriceNav.navigate_and_record()
