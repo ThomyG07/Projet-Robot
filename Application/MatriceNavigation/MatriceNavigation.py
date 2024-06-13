@@ -53,7 +53,7 @@ class MatriceNavigation():
     def record_color(self, col, row):
 
         color = self.marty.color();
-        print(f"Color at position ({col}, {row}): {"hej"}")
+        print(f"Color at position ({col}, {row}): {color}")
         sleep(1)
         print("test")
 
