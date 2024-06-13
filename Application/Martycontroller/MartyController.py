@@ -105,6 +105,9 @@ class MartyController():
 
     def close(self):
         self.marty.close()
+    
+    def getIp(self):
+        return self.ip
         
 
             

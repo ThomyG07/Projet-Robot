@@ -34,6 +34,10 @@ class MartyEtalonnageCouleur():
         # Enregistrement du dictionnaire dans un fichier JSON
         with open("databaseHexaColor.json", "w") as test:
             json.dump(self.Colors, test)
+    
+    def LoadDataBase(self):
+        with open("databaseHexaColor.json","r") as test:
+            self.Colors = json.load(test)
 
     def test(self):
         valueHexa = self.marty.color()
