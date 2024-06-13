@@ -5,7 +5,7 @@ from time import sleep
 class MartyEtalonnageCouleur():
     def __init__(self, Marty):
         self.marty = Marty
-        self.Colors = {"Rouge": None, "Jaune": None, "Vert": None, "Bleu": None, "Violet": None, "Noir":None}
+        self.Colors = {"Rouge": None, "Jaune": None, "Vert": None, "Bleu Ciel": None,"Bleu Marine": None, "Rose": None, "Noir":None}
 
     def getDict(self):
         return self.Colors
@@ -36,11 +36,8 @@ class MartyEtalonnageCouleur():
             json.dump(self.Colors, test)
 
     def test(self):
-        value = self.marty.color()
-        R,G,B = value[0:2], value[2:4], value[4:6]
-        sR = int(R, 16)
-        sG = int(G, 16)
-        sB = int(B, 16)
+        valueHexa = self.marty.color()
+        self.Hexa2RGB(valueHexa)
         codeRGB = [sR, sG, sB]
         for cle,hexvalue in self.Colors.items():
             ecart =0
@@ -50,7 +47,13 @@ class MartyEtalonnageCouleur():
                     print(cle + str(i) + " : " + str(ecart))
                 if(ecart/3 <10): print(cle)
 
-        
+    def Hexa2RGB(self, hexa):
+        R,G,B = hexa[0:2], hexa[2:4], hexa[4:6]
+        sR = int(R, 16)
+        sG = int(G, 16)
+        sB = int(B, 16)
+        codeRGB = [sR, sG, sB]
+        return codeRGB
 
 
 
