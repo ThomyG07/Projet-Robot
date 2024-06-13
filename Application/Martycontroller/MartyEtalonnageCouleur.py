@@ -1,3 +1,4 @@
+import json
 import martypy
 from time import sleep
 
@@ -30,9 +31,9 @@ class MartyEtalonnageCouleur():
         self.Colors[key] = [sR, sG, sB]
 
     def SaveDict(self):
-        Database = open("databaseHexaColor.txt","w")
-        Database.write(str(self.Colors))
-        Database.close()
+        # Enregistrement du dictionnaire dans un fichier JSON
+        with open("databaseHexaColor.json", "w") as test:
+            json.dump(self.Colors, test)
 
     def test(self):
         value = self.marty.color()
