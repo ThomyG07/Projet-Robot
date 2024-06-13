@@ -2,8 +2,8 @@ import martypy
 from time import sleep
 
 class MatriceNavigation():
-    def __init__(self, ip):
-        self.ip = ip
+    def __init__(self, marty):
+        self.marty = marty
         self.grid_size = 3
         self.color_grid = {}
 
