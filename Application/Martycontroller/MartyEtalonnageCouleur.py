@@ -1,5 +1,4 @@
 import json
-import martypy
 from time import sleep
 
 class MartyEtalonnageCouleur():
@@ -52,10 +51,14 @@ class MartyEtalonnageCouleur():
         codeRGB = self.Hexa2RGB(valueHexa)
         for cle,hexvalue in self.Colors.items():
             ecart =0
+           
             if(hexvalue["rgb"]!= None):
                 for i in range(len(hexvalue["rgb"])):
                     ecart+=abs(codeRGB[i]-hexvalue["rgb"][i])
-                if(ecart/3 <10): print(cle)
+                if(ecart/3 <10):
+                    print(cle) 
+                    return cle
+                     
 
     def Hexa2RGB(self, hexa):
         R,G,B = hexa[0:2], hexa[2:4], hexa[4:6]

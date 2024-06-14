@@ -106,5 +106,6 @@ class SettingWidget(QWidget):
         else:
             self.label.setPixmap(QPixmap("Application/img/icons8-emoji-cercle-rouge-48.png"))
     def record(self):
-         self.matriceNav = MatriceNavigation(self.marty)
-         self.matriceNav.navigate_and_record()
+        matriceNav = MatriceNavigation(self.marty)
+        mon_thread = threading.Thread(target = matriceNav.navigate_and_record)
+        mon_thread.start()

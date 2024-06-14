@@ -1,14 +1,20 @@
-import martypy
+import json
 from time import sleep
+from Martycontroller.MartyEtalonnageCouleur import MartyEtalonnageCouleur
+import numpy as np
 
 class MatriceNavigation():
     def __init__(self, marty):
         self.marty = marty
+        self.martycolor = MartyEtalonnageCouleur(self.marty)
+        self.martycolor.LoadDataBase()
         self.grid_size = 3
         self.color_grid = {}
+        self.loadMatrice()
+        print(self.matrice)
+        if (len(self.matrice) == 0): self.matrice =[[0,0,0],[0,0,0],[0,0,0]]
+        
 
-
-    
     def navigate_and_record(self):
 
         for col in range(self.grid_size):     # commencer du bas de la grille
@@ -51,11 +57,24 @@ class MatriceNavigation():
                     self.marty.get_ready()
         
     def record_color(self, col, row):
-
-        color = self.marty.color();
+        
+        color = self.martycolor.test()
         print(f"Color at position ({col}, {row}): {color}")
+        self.matrice[col][row] = color
+        self.SaveMatrice()
         sleep(1)
-        print("test")
+    
+    def SaveMatrice(self):   
+        file = "Matrice.json"
+        with open(file, "w") as test:
+            json.dump(self.matrice, test)
+
+    def loadMatrice(self):
+        file = "Matrice.txt"
+        self.matrice = np.loadtxt(file)
+
+
+           
 
 
     
